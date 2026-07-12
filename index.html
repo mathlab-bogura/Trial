@@ -114,7 +114,30 @@
 </head>
 <body>
 
+<div style="width: 100%; background: #c0392b; padding: 10px; overflow: hidden; white-space: nowrap; box-sizing: border-box; color: white; font-weight: bold;">
+    <marquee id="scrolling-notice" scrollamount="6">লোড হচ্ছে...</marquee>
+</div>
 
+<script>
+    // আপনার গুগল শিটের CSV লিঙ্ক
+    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTK5qG19U2iuZbDZh-zeLqstVPZEC5yS5zbwXGRXFteE5Atks5EKqS1wrg2dVwBSPNbGCBl6QHIeOl/pub?gid=0&single=true&output=csv';
+
+    fetch(url + '&t=' + new Date().getTime())
+        .then(response => response.text())
+        .then(data => {
+            // CSV ডাটা থেকে শুধু প্রথম সেল (A1) নেয়ার জন্য
+            let lines = data.split(/\r?\n/);
+            if (lines[0].trim() !== "") {
+                document.getElementById('scrolling-notice').innerText = lines[0];
+            } else {
+                document.getElementById('scrolling-notice').innerText = "আপাতত কোনো নতুন নোটিশ নেই।";
+            }
+        })
+        .catch(() => {
+            document.getElementById('scrolling-notice').innerText = "নোটিশ আপডেট করতে সমস্যা হচ্ছে।";
+        });
+</script>
+    
 
     <nav class="navbar">
         <div class="logo">
