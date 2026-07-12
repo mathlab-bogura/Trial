@@ -113,32 +113,7 @@
     </style>
 </head>
 <body>
-<div style="width: 100%; background: #c0392b; padding: 10px; overflow: hidden; white-space: nowrap; box-sizing: border-box;">
-    <marquee scrollamount="6" behavior="scroll" direction="left" style="color: white; font-size: 20px; font-weight: bold;">
-        <span id="notice-content">নোটিশ লোড হচ্ছে...</span>
-    </marquee>
-</div>
 
-<script>
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTK5qG19U2iuZbDZh-zeLqstVPZEC5yS5zbwXGRXFteE5Atks5EKqS1wrg2dVwBSPNbGCBl6QHIeOl/pub?gid=0&single=true&output=csv';
-
-    function loadNotice() {
-        const cacheBuster = csvUrl + '&t=' + new Date().getTime();
-
-        fetch(cacheBuster)
-            .then(response => response.text())
-            .then(data => {
-                // এখানে ডাটা স্প্লিট করে শুধুমাত্র প্রথম লাইন (A1) নেওয়া হচ্ছে
-                const rows = data.split('\n'); 
-                if (rows.length > 0) {
-                    document.getElementById('notice-content').innerText = rows[0];
-                }
-            })
-            .catch(error => console.error('আপডেটে সমস্যা:', error));
-    }
-
-    loadNotice();
-</script>
 
 
     <nav class="navbar">
@@ -327,27 +302,7 @@
     </div>
 </section>
 
-<section id="notice-board" class="section" style="text-align: center; padding: 40px 20px; background-color: #F7FAFC;">
-    <h2 style="color: #1B365D; margin-bottom: 20px;">নোটিশ</h2>
-    
-    <button onclick="openNotice()" style="padding: 12px 25px; background: #E53E3E; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold;">
-        <span class="star-blink">★</span> নোটিশ দেখুন
-    </button>
 
-    <div id="notice-popup" class="popup-box">
-        <h4 style="color: #B7791F; margin-bottom: 10px; font-size: 22px;">জরুরি বিজ্ঞপ্তি</h4>
-        <p id="notice-content" style="color: #333; font-size: 18px; line-height: 1.5;"></p>
-        <button onclick="document.getElementById('notice-popup').style.display='none'" style="margin-top:20px; background:red; border:none; color:white; padding: 10px 25px; cursor:pointer; border-radius:5px; font-weight: bold;">বন্ধ করুন</button>
-    </div>
-
-    <div id="admin-panel" style="margin-top:40px; border-top:1px solid #CBD5E0; padding-top:30px; max-width: 400px; margin-left: auto; margin-right: auto;">
-        <input type="password" id="admin-pass" placeholder="অ্যাডমিন পাসওয়ার্ড" style="padding: 10px; width: 60%; border: 1px solid #ccc; border-radius: 5px;">
-        <button onclick="toggleAdmin()" style="background:#1B365D; color:white; border:none; padding: 10px 20px; cursor:pointer; border-radius: 5px;">লগইন</button>
-        
-        <div id="upload-form" style="display:none; margin-top:20px;">
-            <textarea id="notice-text" placeholder="নতুন নোটিশ লিখুন..." style="width: 100%; height: 100px; padding: 12px; border-radius: 5px; border: 1px solid #ccc; resize: vertical;"></textarea>
-            <button onclick="postNotice()" style="background:#388E3C; color:white; border:none; padding:12px; width: 100%; margin-top: 10px; cursor:pointer; border-radius: 5px; font-weight: bold;">নোটিশ আপডেট করুন</button>
-        </div>
     </div>
 </section>
 <section id="contact" class="section">
@@ -495,22 +450,7 @@ document.getElementById("att-form").onsubmit = async (e) => {
     setTimeout(() => location.reload(), 2000);
 };
 
-// --- নোটিশ বোর্ড লজিক ---
-window.onload = function() { setTimeout(openNotice, 1500); };
-function openNotice() {
-    document.getElementById("notice-content").innerText = localStorage.getItem("school_notice") || "আপাতত কোনো নতুন নোটিশ নেই।";
-    document.getElementById("notice-popup").style.display = "block";
-}
-function toggleAdmin() {
-    const pass = document.getElementById("admin-pass").value;
-    if(pass === "m@thlabkeats") { document.getElementById("upload-form").style.display = "block"; } 
-    else { alert("ভুল পাসওয়ার্ড!"); }
-}
-function postNotice() {
-    const newNotice = document.getElementById("notice-text").value;
-    localStorage.setItem("school_notice", newNotice);
-    alert("নোটিশ সফলভাবে আপডেট হয়েছে!");
-}
+
 
 // --- পেমেন্ট ফর্ম ও প্রিন্ট লজিক ---
 document.addEventListener("DOMContentLoaded", function() {
