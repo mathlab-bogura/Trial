@@ -6,26 +6,28 @@
     <title>ফলাফল তৈরির জন্য নম্বর ইনপুট</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            display: block;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
             padding: 20px;
         }
         .form-container {
-            background-color: white;
+            background-color: #ffffff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 450px;
-            margin: 40px auto;
-            position: relative;
         }
         h2 {
             text-align: center;
-            color: #333;
-            margin-bottom: 20px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 22px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -33,98 +35,80 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
+            color: #34495e;
+            font-weight: 600;
             font-size: 14px;
         }
         .form-group input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
             box-sizing: border-box;
-            font-size: 14px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
         }
         .btn-container {
-            text-align: center;
-            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
         }
         button {
-            width: 47%;
+            width: 48%;
             padding: 12px;
             font-size: 15px;
             cursor: pointer;
             font-weight: bold;
             border: none;
-            border-radius: 4px;
-            margin: 0 5px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
         }
         #submitBtn {
-            background-color: #28a745;
+            background-color: #27ae60;
             color: white;
         }
         #submitBtn:hover {
-            background-color: #218838;
+            background-color: #219150;
         }
         #printBtn {
-            background-color: #007bff;
+            background-color: #2980b9;
             color: white;
         }
         #printBtn:hover {
-            background-color: #0056b3;
+            background-color: #2471a3;
         }
         button:disabled {
-            background-color: #cccccc;
+            background-color: #95a5a6;
             cursor: not-allowed;
         }
         .message {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
             font-weight: bold;
-            color: green;
+            color: #27ae60;
             display: none;
         }
         .copyright {
             text-align: center;
-            margin-top: 25px;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-            font-style: italic;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 15px;
         }
         
-        /* প্রিন্ট করার সময় এই CSS কাজ করবে (PDF এর জন্য) */
+        /* প্রিন্ট করার সময় বাটন ও স্টাইল হাইড করার জন্য */
         @media print {
-            body {
-                background-color: white;
-                padding: 0;
-            }
-            .form-container {
-                box-shadow: none;
-                margin: 0 auto;
-                padding: 10px;
-                width: 100%;
-            }
-            /* প্রিন্ট কপিতে বাটনগুলো দেখাবে না */
-            .btn-container, button {
-                display: none !important;
-            }
-            /* ইনপুট বক্সের বর্ডার তুলে দিয়ে নিচে দাগ দেখাবে */
-            .form-group input {
-                border: none;
-                border-bottom: 1px dashed #000;
-                border-radius: 0;
-                padding: 5px 0;
-                background: transparent;
-            }
-            .message {
-                display: none !important;
-            }
-            .copyright {
-                border-top: 1px dashed #000;
-                color: #000;
-            }
+            body { background-color: white; padding: 0; display: block; }
+            .form-container { box-shadow: none; padding: 10px; margin: 0 auto; }
+            .btn-container, button { display: none !important; }
+            .form-group input { border: none; border-bottom: 1px dashed #000; border-radius: 0; padding: 5px 0; }
+            .message { display: none !important; }
+            .copyright { color: #000; border-top: 1px dashed #000; }
         }
     </style>
 </head>
@@ -135,46 +119,44 @@
     <form name="submit-to-google-sheet">
         <div class="form-group">
             <label>শিক্ষার্থীর নাম</label>
-            <input type="text" name="postName" placeholder="যেমন: Rakib"  oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())" required>
+            <input type="text" name="studentName" placeholder="যেমন: Rakib" oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())" required>
         </div>
         <div class="form-group">
             <label>ক্লাস</label>
-            <input type="text" name="idCv" placeholder="ক্লাস " oninput="this.value = this.value.toUpperCase()" required>
+            <input type="text" name="className" placeholder="যেমন: 10" oninput="this.value = this.value.toUpperCase()" required>
         </div>
         <div class="form-group">
             <label>আইডি</label>
-            <input type="text" name="trackingId" placeholder="আইডি" oninput="this.value = this.value.toUpperCase()" required>
+            <input type="text" name="studentId" placeholder="যেমন: MATH7678" oninput="this.value = this.value.toUpperCase()" required>
         </div>
         <div class="form-group">
             <label>মোট নম্বর</label>
-            <input type="text" name="postCount" placeholder="যেমন: 05" required>
+            <input type="number" name="totalMarks" placeholder="যেমন: 50" required>
         </div>
         <div class="form-group">
             <label>প্রাপ্ত নাম্বার</label>
-            <input type="text" name="mobileNo" placeholder="যেমন: 17" required>
-           <label>Pass/Fail</label>
-           <input type="text" name="idCv" placeholder="Pass/Fail " oninput="this.value = this.value.toUpperCase()" required>   
+            <input type="number" name="obtainMarks" placeholder="যেমন: 48" required>
+        </div>
+        <div class="form-group">
+           <label>ফলাফল (Pass/Fail)</label>
+           <input type="text" name="result" placeholder="যেমন: PASS" oninput="this.value = this.value.toUpperCase()" required>   
         </div>
         
         <div class="btn-container">
             <button type="submit" id="submitBtn">জমা দিন</button>
-            <button type="button" id="printBtn" onclick="window.print()">প্রিন্ট করুন (PDF)</button>
+            <button type="button" id="printBtn" onclick="window.print()">প্রিন্ট করুন</button>
         </div>
     </form>
     
-    <div class="message" id="successMsg">তথ্য স্বয়ংক্রিয়ভাবে তথ্য জমা হয়েছে!</div>
-    <!-- মেধা স্বত্ব (Copyright) সেকশন -->
-<div style="text-align: center; font-family: 'Segoe UI', Tahoma, sans-serif; color: #444; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 40px; font-size: 13px;">
-    <p style="margin: 0; font-weight: bold; color: #2c3e50;">
-        &copy; 2026 Mahmudul Hasan | সর্বস্বত্ব সংরক্ষিত
-    </p>
+    <div class="message" id="successMsg">তথ্য সফলভাবে জমা হয়েছে!</div>
     
-</div>
-    
+    <div class="copyright">
+        <p style="margin: 0; font-weight: bold;">&copy; 2026 Mahmudul Hasan | সর্বস্বত্ব সংরক্ষিত</p>
+    </div>
 </div>
 
 <script>
-  // এখানে আপনার Apps Script থেকে পাওয়া Web App URL-টি বসান
+  // আপনার Apps Script এর Web App URL এখানে দিন
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwtA7CT8wuQXLBv6VauZfC8gyNKe1CPIn0jNUP1GvlEe7tIWvIrPiLUl9hYAodEscAX/exec'; 
   
   const form = document.forms['submit-to-google-sheet'];
@@ -189,6 +171,24 @@
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
+        successMsg.style.display = "block";
+        form.reset(); 
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert("দুঃখিত, তথ্য জমা দেওয়া যায়নি।");
+      })
+      .finally(() => {
+        submitBtn.innerText = "জমা দিন";
+        submitBtn.disabled = false;
+        setTimeout(function(){ successMsg.style.display = "none"; }, 4000); 
+      });
+  });
+</script>
+
+</body>
+</html>
+se => {
         successMsg.style.display = "block";
         form.reset(); 
       })
