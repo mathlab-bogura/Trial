@@ -3,616 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATH LAB | গণিত হোক আনন্দের</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>ফলাফল তৈরির জন্য নম্বর ইনপুট</title>
     <style>
-        :root {
-            --primary: #1B365D;   
-            --accent: #E53E3E;    
-            --bg-light: #F7FAFC;  
-            --text: #2D3748;
-            --white: #FFFFFF;
-            --nav-bg: #FFFFFF;
-        }
-
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: block;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            scroll-behavior: smooth;
+            padding: 20px;
         }
-
-        body { color: var(--text); background-color: var(--white); line-height: 1.6; }
-
-        /* নেভিগেশন বার */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background-color: var(--nav-bg); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid #E2E8F0; }
-        .logo a { text-decoration: none; }
-        .logo-text { font-size: 26px; font-weight: 800; color: var(--primary); letter-spacing: 1.5px; display: flex; align-items: center; gap: 5px; }
-        .logo-text i { font-size: 22px; color: var(--accent); }
-        .logo-accent { color: var(--accent); border-bottom: 3px solid var(--primary); padding-bottom: 2px; }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { margin-left: 20px; }
-        .nav-links a { color: var(--primary); text-decoration: none; font-size: 16px; font-weight: 600; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--accent); }
-
-        /* হিরো ব্যানার */
-        .hero { padding: 80px 20px; background: linear-gradient(rgba(27, 54, 93, 0.9), rgba(27, 54, 93, 0.95)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover; text-align: center; color: var(--white); }
-        .hero h1 { font-size: 36px; margin-bottom: 15px; font-weight: 700; }
-        .hero p { font-size: 18px; max-width: 600px; margin: 0 auto 35px auto; color: #E2E8F0; }
-        .btn-primary { display: inline-block; padding: 14px 32px; background-color: var(--accent); color: var(--white); text-decoration: none; border-radius: 5px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .btn-primary:hover { transform: translateY(-2px); }
-
-        /* সেকশন জেনারেল স্টাইল */
-        .section { padding: 60px 5%; }
-        .section-title { text-align: center; margin-bottom: 40px; }
-        .section-title h2 { font-size: 28px; color: var(--primary); }
-        .underline { width: 60px; height: 4px; background-color: var(--accent); margin: 8px auto 0 auto; border-radius: 2px; }
-
-        /* বৈশিষ্ট্য সেকশন */
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .feature-card { text-align: center; padding: 35px 20px; background-color: var(--bg-light); border-radius: 8px; border: 1px solid #E2E8F0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .feature-card i { font-size: 45px; color: var(--accent); margin-bottom: 15px; }
-        .feature-card h3 { margin-bottom: 12px; color: var(--primary); font-size: 20px; }
-
-        /* ব্যাচসমূহ সেকশন */
-        .courses { background-color: var(--bg-light); }
-        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .course-card { background-color: var(--white); padding: 25px; border-radius: 8px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s; }
-        .course-card:hover { transform: translateY(-3px); }
-        .course-card h3 { color: var(--primary); font-size: 18px; margin-bottom: 8px; }
-        .price { font-size: 18px; font-weight: bold; color: var(--accent); margin-bottom: 15px; }
-        .course-card ul { list-style: none; text-align: left; }
-        .course-card li { margin-bottom: 10px; display: flex; align-items: center; font-size: 14px; }
-        .course-card li i { color: #388E3C; margin-right: 10px; font-size: 15px; }
-
-        /* NCTB বই ডাউনলোড সেকশন */
-        .nctb-section { background-color: #EBF8FF; border: 2px dashed #63B3ED; border-radius: 10px; text-align: center; padding: 40px 20px; margin-top: 20px; }
-        .nctb-section h3 { color: #2B6CB0; font-size: 22px; margin-bottom: 10px; }
-        .nctb-section p { font-size: 16px; color: #4A5568; margin-bottom: 20px; }
-        .btn-nctb { display: inline-block; padding: 12px 28px; background-color: #3182CE; color: var(--white); text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; transition: background 0.2s; }
-        .btn-nctb:hover { background-color: #2B6CB0; }
-
-        /* ফর্ম, কন্টাক্ট এবং অন্যান্য */
-        .contact-container { display: flex; flex-direction: column; gap: 30px; }
-        @media (min-width: 992px) { .contact-container { display: grid; grid-template-columns: 1fr 1fr; } }
-        .payment-methods { background-color: var(--bg-light); padding: 25px; border-radius: 8px; border: 1px solid #E2E8F0; height: max-content; }
-        .payment-methods h3 { color: var(--primary); margin-bottom: 15px; font-size: 18px; border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
-        .method-item { display: flex; align-items: center; background: var(--white); padding: 12px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid var(--accent); box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .method-item i { font-size: 24px; margin-right: 15px; }
-        .method-details p { font-size: 15px; font-weight: bold; color: var(--primary); }
-        .method-details span { font-size: 14px; color: #2D3748; font-weight: 600; letter-spacing: 0.5px; }
-        .contact-form { background: var(--white); padding: 25px; border-radius: 8px; border: 1px solid #E2E8F0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-        .contact-form h3 { color: var(--primary); margin-bottom: 20px; font-size: 20px; }
-        .contact-form input, .contact-form select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #CBD5E0; border-radius: 5px; outline: none; font-size: 15px; }
-        .contact-form input:focus, .contact-form select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.1); }
-        .contact-form input[readonly] { background-color: #EDF2F7; color: #E53E3E; font-weight: bold; border: 1px solid #CBD5E0 !important; cursor: not-allowed; }
-        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
-        .form-row select { margin-bottom: 0; }
-        .btn-submit { width: 100%; padding: 14px; background-color: var(--primary); color: var(--white); border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 5px; }
-        .btn-submit:hover { background-color: #122543; }
-        .footer { background-color: var(--primary); color: #A0AEC0; text-align: center; padding: 25px; font-size: 14px; border-top: 3px solid var(--accent); }
-
-        /* টুলস ও পপআপ স্টাইল */
-        .container-tools { max-width: 450px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .container-tools input, .container-tools select, .container-tools button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
-        .container-tools button { background: #1B365D; color: white; border: none; cursor: pointer; font-weight: bold; }
-        .success-box { padding: 20px; text-align: center; background: #f0fff4; border: 2px solid #38a169; border-radius: 10px; color: #2d3748; margin-top: 10px; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        .star-blink { color: #FFD700; font-size: 20px; animation: blink 1s infinite; margin-right: 5px; }
-        .popup-box { display: none; position: fixed; top: 20%; left: 10%; right: 10%; z-index: 1000; padding: 20px; background: #fffaf0; border: 2px solid #ECC94B; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); text-align: center; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 28px; }
-            .section { padding: 45px 5%; }
-            .form-row { flex-direction: column; gap: 0; }
-            .form-row select { margin-bottom: 15px; }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            margin: 40px auto;
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            width: 47%;
+            padding: 12px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+        #submitBtn {
+            background-color: #28a745;
+            color: white;
+        }
+        #submitBtn:hover {
+            background-color: #218838;
+        }
+        #printBtn {
+            background-color: #007bff;
+            color: white;
+        }
+        #printBtn:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+            display: none;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            font-style: italic;
+        }
+        
+        /* প্রিন্ট করার সময় এই CSS কাজ করবে (PDF এর জন্য) */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .form-container {
+                box-shadow: none;
+                margin: 0 auto;
+                padding: 10px;
+                width: 100%;
+            }
+            /* প্রিন্ট কপিতে বাটনগুলো দেখাবে না */
+            .btn-container, button {
+                display: none !important;
+            }
+            /* ইনপুট বক্সের বর্ডার তুলে দিয়ে নিচে দাগ দেখাবে */
+            .form-group input {
+                border: none;
+                border-bottom: 1px dashed #000;
+                border-radius: 0;
+                padding: 5px 0;
+                background: transparent;
+            }
+            .message {
+                display: none !important;
+            }
+            .copyright {
+                border-top: 1px dashed #000;
+                color: #000;
+            }
         }
     </style>
 </head>
 <body>
 
-<div style="width: 100%; background: #c0392b; padding: 10px; overflow: hidden; white-space: nowrap; box-sizing: border-box; color: white; font-weight: bold;">
-    <marquee id="scrolling-notice" scrollamount="6">লোড হচ্ছে...</marquee>
+<div class="form-container">
+    <h2>ফলাফল তৈরির জন্য নম্বর ইনপুট</h2>
+    <form name="submit-to-google-sheet">
+        <div class="form-group">
+            <label>শিক্ষার্থীর নাম</label>
+            <input type="text" name="postName" placeholder="যেমন: Rakib"  oninput="this.value = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())" required>
+        </div>
+        <div class="form-group">
+            <label>ক্লাস</label>
+            <input type="text" name="idCv" placeholder="ক্লাস " oninput="this.value = this.value.toUpperCase()" required>
+        </div>
+        <div class="form-group">
+            <label>আইডি</label>
+            <input type="text" name="trackingId" placeholder="আইডি" oninput="this.value = this.value.toUpperCase()" required>
+        </div>
+        <div class="form-group">
+            <label>মোট নম্বর</label>
+            <input type="text" name="postCount" placeholder="যেমন: 05" required>
+        </div>
+        <div class="form-group">
+            <label>প্রাপ্ত নাম্বার</label>
+            <input type="text" name="mobileNo" placeholder="যেমন: 17" required>
+           <label>Pass/Fail</label>
+           <input type="text" name="idCv" placeholder="Pass/Fail " oninput="this.value = this.value.toUpperCase()" required>   
+        </div>
+        
+        <div class="btn-container">
+            <button type="submit" id="submitBtn">জমা দিন</button>
+            <button type="button" id="printBtn" onclick="window.print()">প্রিন্ট করুন (PDF)</button>
+        </div>
+    </form>
+    
+    <div class="message" id="successMsg">তথ্য স্বয়ংক্রিয়ভাবে তথ্য জমা হয়েছে!</div>
+    <!-- মেধা স্বত্ব (Copyright) সেকশন -->
+<div style="text-align: center; font-family: 'Segoe UI', Tahoma, sans-serif; color: #444; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 40px; font-size: 13px;">
+    <p style="margin: 0; font-weight: bold; color: #2c3e50;">
+        &copy; 2026 Mahmudul Hasan | সর্বস্বত্ব সংরক্ষিত
+    </p>
+    
+</div>
+    
 </div>
 
 <script>
-    // আপনার গুগল শিটের CSV লিঙ্ক
-    const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTK5qG19U2iuZbDZh-zeLqstVPZEC5yS5zbwXGRXFteE5Atks5EKqS1wrg2dVwBSPNbGCBl6QHIeOl/pub?gid=0&single=true&output=csv';
+  // এখানে আপনার Apps Script থেকে পাওয়া Web App URL-টি বসান
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwtA7CT8wuQXLBv6VauZfC8gyNKe1CPIn0jNUP1GvlEe7tIWvIrPiLUl9hYAodEscAX/exec'; 
+  
+  const form = document.forms['submit-to-google-sheet'];
+  const successMsg = document.getElementById('successMsg');
+  const submitBtn = document.getElementById('submitBtn');
 
-    fetch(url + '&t=' + new Date().getTime())
-        .then(response => response.text())
-        .then(data => {
-            let lines = data.split(/\r?\n/);
-            if (lines[0].trim() !== "") {
-                document.getElementById('scrolling-notice').innerText = lines[0];
-            } else {
-                document.getElementById('scrolling-notice').innerText = "আপাতত কোনো নতুন নোটিশ নেই।";
-            }
-        })
-        .catch(() => {
-            document.getElementById('scrolling-notice').innerText = "নোটিশ আপডেট করতে সমস্যা হচ্ছে।";
-        });
-</script>
+  form.addEventListener('submit', e => {
+    e.preventDefault(); 
     
+    submitBtn.innerText = "জমা হচ্ছে..."; 
+    submitBtn.disabled = true;
 
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#home">
-                <span class="logo-text"><i class="fas fa-compass"></i> MATH <span class="logo-accent">LAB</span></span>
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">হোম</a></li>
-            <li><a href="#features">বৈশিষ্ট্য</a></li>
-            <li><a href="#courses">ব্যাচসমূহ</a></li>
-            <li><a href="#books">বই ডাউনলোড</a></li>
-            <li><a href="#contact">বেতন ও যোগাযোগ</a></li>
-        </ul>
-    </nav>
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        successMsg.style.display = "block";
+        form.reset(); 
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert("দুঃখিত, তথ্য জমা দেওয়া যায়নি।");
+      })
+      .finally(() => {
+        submitBtn.innerText = "জমা দিন";
+        submitBtn.disabled = false;
+        setTimeout(function(){ successMsg.style.display = "none"; }, 3000); 
+      });
+  });
+</script>
 
-    <header id="home" class="hero">
-        <h1>গণিতের ভয়কে করো জয়!</h1>
-        <p>সহজ টেকনিক, লজিক্যাল অ্যানালাইসিস আর গভীর অনুশীলনের মাধ্যমে প্রতিটি গাণিতিক সমস্যার সমাধান শিখুন অত্যন্ত সহজে।</p>
-        <a href="#contact" class="btn-primary">ফরম পূরণ করুন</a>
-    </header>
+</body>
+</html>t>
 
-<section id="features" class="section">
-    <div class="section-title">
-        <h2>কেন আমাদের বেছে নিবেন?</h2>
-        <div class="underline"></div>
-    </div>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <i class="fas fa-graduation-cap"></i>
-            <h3>অভিজ্ঞ মেন্টর</h3>
-            <p>দীর্ঘ ৫ বছরের শিক্ষকতার অভিজ্ঞতা এবং গণিতে উচ্চতর ডিগ্রিধারী মেন্টরের সরাসরি তত্ত্বাবধান।</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-book-open"></i>
-            <h3>সহজ শর্টকাট টেকনিক</h3>
-            <p>কঠিন সব সমীকরণ ও জ্যামিতির সমাধান মুখস্থ না করে বেসিক কনসেপ্ট ক্লিয়ার করার অনন্য পদ্ধতি।</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-calculator"></i>
-            <h3>নিয়মিত মূল্যায়ন</h3>
-            <p>অধ্যায়ভিত্তিক সৃজনশীল ও MCQ পরীক্ষা এবং দুর্বলতা চিহ্নিত করে স্পেশাল সলভ ক্লাস।</p>
-        </div>
-    </div>
-</section>
-
-<section id="courses" class="section courses">
-    <div class="section-title">
-        <h2>আমাদের চলমান ব্যাচসমূহ</h2>
-        <div class="underline"></div>
-    </div>
-    <div class="course-grid">
-        <div class="course-card">
-            <h3>৫ম-৭ম শ্রেণি</h3>
-            <p class="price">১০০০ ৳ / মাস</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> নতুন কারিকুলাম বেসিক ক্লিয়ারেন্স</li>
-                <li><i class="fas fa-check-circle"></i> নিয়মিত ক্লাস ও গাণিতিক অনুশীলন</li>
-                <li><i class="fas fa-check-circle"></i> সাপ্তাহিক মূল্যায়ন পরীক্ষা</li>
-                <li><i class="fas fa-check-circle"></i> দুর্বলদের জন্য এক্সট্রা কেয়ার</li>
-            </ul>
-        </div>
-        <div class="course-card">
-            <h3>পি.এস.সি পরীক্ষার প্রস্তুতি</h3>
-            <p class="price">১২০০ ৳ / মাস</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> স্পেশাল গাইডলাইন ও ফাইনাল রিভিশন</li>
-                <li><i class="fas fa-check-circle"></i> অধ্যায়ভিত্তিক স্পেশাল মডেল টেস্ট</li>
-                <li><i class="fas fa-check-circle"></i> বিগত বছরের প্রশ্ন সলভ</li>
-                <li><i class="fas fa-check-circle"></i> বোর্ড পরীক্ষার ভীতি দূরীকরণ</li>
-            </ul>
-        </div>
-        <div class="course-card">
-            <h3>৮ম শ্রেণি</h3>
-            <p class="price">১২০০ ৳ / মাস</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> নতুন কারিকুলাম অনুযায়ী বাস্তবমুখী শিখন</li>
-                <li><i class="fas fa-check-circle"></i> নিয়মিত মূল্যায়ন ও হোমওয়ার্ক ট্র্যাকিং</li>
-                <li><i class="fas fa-check-circle"></i> বেসিক কনসেপ্ট ক্লিয়ারেন্স</li>
-                <li><i class="fas fa-check-circle"></i> স্পেশাল সলভ ক্লাস</li>
-            </ul>
-        </div>
-        <div class="course-card">
-            <h3>জে.এস.সি পরীক্ষার প্রস্তুতি</h3>
-            <p class="price">১৫০০ ৳ / মাস</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> এক্সক্লুসিভ প্রশ্ন সলভিং সেশন</li>
-                <li><i class="fas fa-check-circle"></i> board স্ট্যান্ডার্ড পরীক্ষা ও সলভ ক্লাস</li>
-                <li><i class="fas fa-check-circle"></i> শর্টকাট টেকনিক শেখানো</li>
-                <li><i class="fas fa-check-circle"></i> পরীক্ষার ১০০% চূড়ান্ত প্রস্তুতি</li>
-            </ul>
-        </div>
-        <div class="course-card">
-            <h3>৯ম-১০ম শ্রেণি (সাধারণ গণিত)</h3>
-            <p class="price">১৫০০ ৳ / মাস</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> সৃজনশীল ও MCQ বিশেষ প্রস্তুতি</li>
-                <li><i class="fas fa-check-circle"></i> গুরুত্বপূর্ণ অধ্যায়গুলোর নিখুঁত বিশ্লেষণ</li>
-                <li><i class="fas fa-check-circle"></i> নিয়মিত ক্লাস টেস্ট ও মূল্যায়ন</li>
-                <li><i class="fas fa-check-circle"></i> ফাইনাল মডেল টেস্ট</li>
-            </ul>
-        </div>
-        <div class="course-card">
-            <h3>৯ম-১০ম শ্রেণি (উচ্চতর গণিত সহ)</h3>
-            <p class="price">২০০০ ৳ / মাস</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> সাধারণ গণিত + উচ্চতর গণিত সম্পূর্ণ গাইড</li>
-                <li><i class="fas fa-check-circle"></i> জ্যামিতি ও ত্রিকোণমিতির সহজ ট্রিকস</li>
-                <li><i class="fas fa-check-circle"></i> জটিল সমীকরণের সহজ সমাধান</li>
-                <li><i class="fas fa-check-circle"></i> বোর্ড স্ট্যান্ডার্ড প্রশ্ন সলভ</li>
-            </ul>
-        </div>
-        <div class="course-card">
-            <h3>এস.এস.সি পরীক্ষার প্রস্তুতি</h3>
-            <p class="price" style="font-size: 16px;">বিজ্ঞান বিভাগ: ৩০০০ ৳ | মানবিক: ২০০০ ৳</p>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> বিগত ১০ বছরের টেস্ট পেপার সলভ</li>
-                <li><i class="fas fa-check-circle"></i> ফাইনাল সাজেশন ও ১০০% প্রস্তুতির মক টেস্ট</li>
-                <li><i class="fas fa-check-circle"></i> স্পেশাল রিভিশন ক্লাস</li>
-                <li><i class="fas fa-check-circle"></i> উত্তরপত্র মূল্যায়নের বিশেষ টিপস</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section id="books" class="section">
-    <div class="section-title">
-        <h2>পাঠ্যপুস্তক ডাউনলোড</h2>
-        <div class="underline"></div>
-    </div>
-    <div class="nctb-section">
-        <h3><i class="fas fa-download"></i> এনসিটিবি (NCTB) বোর্ড বই</h3>
-        <p>নতুন কারিকুলাম ও পুরাতন কারিকুলামের ১ম থেকে ১০ম শ্রেণীর যেকোনো বিষয়ের ই-বুক (PDF) সরাসরি জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড-এর অফিশিয়াল ওয়েবসাইট থেকে ডাউনলোড করতে নিচের বাটনে ক্লিক করুন。</p>
-        <a href="https://nctb.gov.bd/" target="_blank" class="btn-nctb"><i class="fas fa-external-link-alt"></i> NCTB ওয়েবসাইট ভিজিট করুন</a>
-    </div>
-</section>
-
-<section id="id-generator" class="section">
-    <div class="container-tools">
-        <h2 style="text-align: center; color: #1B365D; margin-bottom: 20px;">কোড জেনারেটর</h2>
-        <div id="id-login">
-            <input type="password" id="id-pass" placeholder="পাসওয়ার্ড">
-            <button onclick="checkIdPass()">প্রবেশ</button>
-        </div>
-        <div id="id-form-div" style="display:none;">
-            <form id="id-form" action="https://script.google.com/macros/s/AKfycbymR5nYrDd_RL6nf_7lxf1Brw7MEr4wNc8u-22LjLaMNPXBpwAVxesLgP33VG1b0Zf1wg/exec" method="POST">
-                <input type="hidden" name="form_type" value="code_gen">
-                <input type="text" name="name" id="stu-name" placeholder="নাম" required>
-                <select name="class" id="stu-class">
-                    <option value="৫ম">৫ম</option><option value="৬ষ্ঠ">৬ষ্ঠ</option><option value="৭ম">৭ম</option>
-                    <option value="৮ম">৮ম</option><option value="৯ম">৯ম</option><option value="১০ম">১০ম</option>
-                </select>
-                <input type="hidden" name="code" id="hidden-code">
-                <button type="button" onclick="generateCode()">কোড তৈরি করুন</button>
-                <div id="code-result" style="display:none; text-align: center; margin-top: 15px;">
-                    <h2 id="final-code" style="color: #E53E3E; margin-bottom: 10px;"></h2>
-                    <button type="submit" id="code-submit-btn">সেভ করুন</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-
-<section id="attendance" class="section" style="padding-top: 20px;">
-    <div class="container-tools">
-        <h2 style="text-align: center; color: #1B365D; margin-bottom: 20px;">অনলাইন হাজিরা</h2>
-        <div id="att-login">
-            <input type="password" id="att-pass" placeholder="পাসওয়ার্ড">
-            <button onclick="checkAttPass()">প্রবেশ</button>
-        </div>
-        <div id="att-class-buttons" style="display:none; text-align: center;">
-            <h4 style="margin-bottom: 15px; color: #2D3748;">শ্রেণি নির্বাচন করুন</h4>
-            <button onclick="showAttForm('৫ম')">৫ম শ্রেণি</button>
-            <button onclick="showAttForm('৬ষ্ঠ')">৬ষ্ঠ শ্রেণি</button>
-            <button onclick="showAttForm('৭ম')">৭ম শ্রেণি</button>
-            <button onclick="showAttForm('৮ম')">৮ম শ্রেণি</button>
-            <button onclick="showAttForm('৯ম')">৯ম শ্রেণি</button>
-            <button onclick="showAttForm('১০ম')">১০ম শ্রেণি</button>
-        </div>
-        <div id="att-form-div" style="display:none;">
-            <form id="att-form" action="https://script.google.com/macros/s/AKfycbymR5nYrDd_RL6nf_7lxf1Brw7MEr4wNc8u-22LjLaMNPXBpwAVxesLgP33VG1b0Zf1wg/exec" method="POST">
-                <input type="hidden" name="form_type" value="attendance">
-                <input type="hidden" name="class_name" id="selected-class">
-                <input type="text" name="id" id="stu-id" placeholder="আইডি নম্বর বা অক্ষর" required>
-                <button type="submit" id="att-submit-btn">হাজিরা জমা দিন</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="section">
-    <div class="section-title">
-        <h2>পেমেন্ট ও শিক্ষার্থীর তথ্য দিন</h2>
-        <div class="underline"></div>
-    </div>
-    <div class="contact-container">
-        <div class="payment-methods">
-            <h3>টাকা পাঠানোর নিয়ম ও পার্সোনাল নম্বর:</h3>
-            <p style="font-size: 14px; margin-bottom: 15px; color: #555;">নিচের যেকোনো নম্বরে "Send Money" করে ফর্মটি পূরণ করুন:</p>
-            
-            <div class="method-item"><i class="fas fa-mobile-alt" style="color: #D12053;"></i><div class="method-details"><p>বিকাশ (Personal)</p><span>০১৩১৭-৩২৭২৮৪</span></div></div>
-            <div class="method-item"><i class="fas fa-money-bill-wave" style="color: #F7941D;"></i><div class="method-details"><p>নগদ (Personal)</p><span>০১৩১৭-৩২৭২৮৪</span></div></div>
-            <div class="method-item"><i class="fas fa-wallet" style="color: #00A651;"></i><div class="method-details"><p>উপায় (Personal)</p><span>০১৩১৭-৩২৭২৮৪</span></div></div>
-            <div class="method-item"><i class="fas fa-credit-card" style="color: #8C3494;"></i><div class="method-details"><p>রকেট (Personal)</p><span>০১৩১৭-৩২৭২৮৪০</span></div></div>
-            
-            <div style="margin-top: 15px; font-size: 14px; color: #4A5568; border-top: 1px dashed #CBD5E0; padding-top: 12px;">
-            <p style="margin-bottom: 5px;"><i class="fas fa-phone-alt" style="color: #1B365D;"></i> <strong>যোগাযোগ:</strong> ০১৭৬৩-২০১২৯৯ (মাহমুদুল হাসান)</p>
-            <p style="margin-bottom: 5px;"><i class="far fa-clock" style="color: #E53E3E;"></i> <strong>সময়:</strong> বিকাল ৫:০০ হতে রাত ১০:০০ পর্যন্ত</p>
-            <p><i class="fas fa-map-marker-alt" style="color: #388E3C;"></i> <strong>সরাসরি অফিস:</strong> শিবগঞ্জ, বগুড়া।</p>
-            </div>
-            </div>
-            
-            <form id="mathLabForm" class="contact-form" action="https://script.google.com/macros/s/AKfycbymR5nYrDd_RL6nf_7lxf1Brw7MEr4wNc8u-22LjLaMNPXBpwAVxesLgP33VG1b0Zf1wg/exec" method="POST" onsubmit="handleFormSubmit(event)">
-            <h3>ভর্তি / পেমেন্ট ফর্ম</h3>
-            <input type="hidden" name="Student_Code" id="hiddenStudentCode">
-            
-            <div class="form-row">
-            <select name="month" id="monthSelect" required>
-            <option value="" disabled selected>মাসের নাম নির্বাচন করুন</option>
-            <option value="JAN">জানুয়ারি</option><option value="FEB">ফেব্রুয়ারি</option><option value="MAR">মার্চ</option>
-            <option value="APR">এপ্রিল</option><option value="MAY">মে</option><option value="JUN">জুন</option>
-            <option value="JUL">জুলাই</option><option value="AUG">আগস্ট</option><option value="SEP">সেপ্টেম্বর</option>
-            <option value="OCT">অক্টোবর</option><option value="NOV">নভেম্বর</option><option value="DEC">ডিসেম্বর</option>
-            </select>
-            <select name="year" id="yearSelect" required></select>
-            </div>
-            
-            <select name="form_purpose" id="formPurpose" required>
-            <option value="" disabled selected>আবেদনের উদ্দেশ্য নির্বাচন করুন</option>
-            <option value="Admission">নতুন ভর্তি তথ্য (Admission)</option>
-            <option value="Payment">মাসিক বেতন / পেমেন্ট (Payment)</option>
-            </select>
-            
-            <input type="text" name="student_name" id="studentName" placeholder="শিক্ষার্থীর নাম" required>
-            <input type="text" name="roll_number" id="rollNumber" placeholder="রোল নম্বর (যদি থাকে)">
-            
-            <select name="class" id="classSelect" required>
-            <option value="" disabled selected>শ্রেণী / প্রোগ্রাম নির্বাচন করুন</option>
-            <option value="Class 5-7">৫ম-৭ম শ্রেণি (১০০০ ৳)</option>
-            <option value="PSC Preparation">পি.এস.সি পরীক্ষার প্রস্তুতি (১২০০ ৳)</option>
-            <option value="Class 8">৮ম শ্রেণি (১২০০ ৳)</option>
-            <option value="JSC Preparation">জে.এস.সি পরীক্ষার প্রস্তুতি (১৫০০ ৳)</option>
-            <option value="Class 9-10 General Math">৯ম-১০ম শ্রেণি - সাধারণ গণিত (১৫০০ ৳)</option>
-            <option value="Class 9-10 Higher Math">৯ম-১০ম শ্রেণি - উচ্চতর গণিত সহ (২০০০ ৳)</option>
-            <option value="SSC Prep Science">এস.এস.সি প্রস্তুতি - বিজ্ঞান বিভাগ (৩০০০ ৳)</option>
-            <option value="SSC Prep Humanities">এস.এস.সি প্রস্তুতি - মানবিক বিভাগ (২০০০ ৳)</option>
-            </select>
-            
-            <select name="payment_method" id="paymentMethod" onchange="checkPaymentMethod()" required>
-            <option value="" disabled selected>পেমেন্ট মাধ্যম নির্বাচন করুন</option>
-            <option value="bKash">বিকাশ (bKash)</option><option value="Nagad">নগদ (Nagad)</option>
-            <option value="Rocket">রকেট (Rocket)</option><option value="Upay">উপায় (Upay)</option>
-            <option value="Cash">সরাসরি (ক্যাশ)</option>
-            </select>
-            
-            <input type="number" name="amount" id="amountInput" placeholder="টাকার পরিমাণ (Amount)" required>
-            <input type="text" name="transaction_id" id="transactionInput" placeholder="ট্রানজেকশন আইডি (TxnID) / নম্বর" required>
-            <button type="submit" class="btn-submit">তথ্য সাবমিট ও প্রিন্ট করুন</button>
-            </form>
-            </div>
-            </section>
-            
-            <footer class="footer">
-            <p>&copy; ২০২৬ MATH LAB. সর্বস্বত্ব সংরক্ষিত।</p>
-            </footer>
-            
-            <script>
-            // --- সেশন ও টুলস লজিক (পাসওয়ার্ড সেভ রাখা) ---
-            document.addEventListener("DOMContentLoaded", function() {
-            if(sessionStorage.getItem("id_unlocked") === "true") {
-            document.getElementById("id-login").style.display = "none";
-            document.getElementById("id-form-div").style.display = "block";
-            }
-            if(sessionStorage.getItem("att_unlocked") === "true") {
-            document.getElementById("att-login").style.display = "none";
-            document.getElementById("att-class-buttons").style.display = "block";
-            }
-            });
-            
-            // কোড জেনারেটর লগিক
-            function checkIdPass() { 
-            if(document.getElementById("id-pass").value==="m@thlabkeats") {
-            sessionStorage.setItem("id_unlocked", "true");
-            document.getElementById("id-login").style.display = "none";
-            document.getElementById("id-form-div").style.display="block"; 
-            } else { alert("ভুল পাসওয়ার্ড!"); }
-            }
-            
-            function generateCode() {
-            const name = document.getElementById("stu-name").value.toLowerCase().trim();
-            if(!name) { alert("দয়া করে নাম লিখুন।"); return; }
-            
-            const code = "MATH" + Math.floor(Math.random()*9000);
-            document.getElementById("final-code").innerText = code;
-            document.getElementById("hidden-code").value = code;
-            document.getElementById("code-result").style.display = "block";
-            
-            // গুগল শিট ডাবল এন্ট্রি প্রটেকশন সাবমিট হ্যান্ডলার
-            document.getElementById("id-form").onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById("code-submit-btn");
-            btn.innerText = "চেক করা হচ্ছে..."; btn.disabled = true;
-            
-            try {
-            let response = await fetch(e.target.action, { method: "POST", body: new FormData(e.target) });
-            let result = await response.json();
-            
-            if(result.status === "duplicate") {
-            alert(result.message); // এই মাসে অলরেডি কোড নিয়ে থাকলে
-            btn.innerText = "সেভ করুন"; btn.disabled = false;
-            } else if (result.status === "success") {
-            e.target.innerHTML = `<div class="success-box"><h3>অভিনন্দন!</h3><p>${result.message}</p></div>`;
-            setTimeout(() => location.reload(), 2000);
-            }
-            } catch (err) {
-            alert("নেটওয়ার্ক সমস্যা অথবা তথ্য সেভ হয়েছে! অনুগ্রহ করে আপনার গুগল শিট চেক করুন।");
-            btn.innerText = "সেভ করুন"; btn.disabled = false;
-            }
-            };
-            }
-            
-            // হাজিরা লগিক
-            function checkAttPass() { 
-            if(document.getElementById("att-pass").value==="m@thlabkeats") {
-            sessionStorage.setItem("att_unlocked", "true");
-            document.getElementById("att-login").style.display = "none";
-            document.getElementById("att-class-buttons").style.display = "block";
-            } else { alert("ভুল পাসওয়ার্ড!"); }
-            }
-            
-            function showAttForm(cls) {
-            document.getElementById('att-class-buttons').style.display = 'none';
-            document.getElementById('att-form-div').style.display = 'block';
-            document.getElementById('selected-class').value = cls;
-            }
-            // গুগল শিট হাজিরা সাবমিট হ্যান্ডলার
-            document.getElementById("att-form").onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById("att-submit-btn");
-            btn.innerText = "চেক করা হচ্ছে..."; btn.disabled = true;
-            
-            try {
-            let response = await fetch(e.target.action, { method: "POST", body: new FormData(e.target) });
-            let result = await response.json();
-            
-            if(result.status === "duplicate") {
-            alert(result.message); // আজকে অলরেডি হাজিরা দিয়ে থাকলে
-            btn.innerText = "হাজিরা জমা দিন"; btn.disabled = false;
-            } else if (result.status === "success") {
-            e.target.parentElement.innerHTML = `<div class="success-box"><h3>উপস্থিতি নিশ্চিত!</h3><p>${result.message}</p></div>`;
-            setTimeout(() => location.reload(), 2000);
-            }
-            } catch (err) {
-            alert("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে আবার চেষ্টা করুন।");
-            btn.innerText = "হাজিরা জমা দিন"; btn.disabled = false;
-            }
-            };
-            
-            
-            
-            // --- পেমেন্ট ফর্ম ও প্রিন্ট লজিক ---
-            document.addEventListener("DOMContentLoaded", function() {
-            var yearSelect = document.getElementById("yearSelect");
-            var startYear = 2024; 
-            for (var i = 0; i <= 100; i++) {
-            var currentYear = startYear + i;
-            var banglaYear = currentYear.toString().replace(/\d/g, function(d) { return "০১২৩৪৫৬৭৮৯"[d]; });
-            var option = document.createElement("option");
-            option.value = currentYear; option.text = banglaYear;
-            yearSelect.appendChild(option);
-            }
-            });
-            
-            function checkPaymentMethod() {
-            var paymentMethod = document.getElementById("paymentMethod").value;
-            var transactionInput = document.getElementById("transactionInput");
-            if (paymentMethod === "Cash") {
-            transactionInput.readOnly = true; 
-            transactionInput.value = "প্রযোজ্য নয়"; 
-            transactionInput.removeAttribute("required");
-            } else {
-            transactionInput.readOnly = false;
-            if(transactionInput.value === "প্রযোজ্য নয়") { transactionInput.value = ""; }
-            transactionInput.placeholder = "ট্রানজেকশন আইডি (TxnID) / নম্বর";
-            transactionInput.setAttribute("required", "required");
-            }
-            }
-            function generateAndPrintReceipt(data) {
-            var printFrame = document.createElement('iframe');
-            printFrame.style.position = 'fixed'; printFrame.style.right = '0'; printFrame.style.bottom = '0';
-            printFrame.style.width = '0'; printFrame.style.height = '0'; printFrame.style.border = '0';
-            document.body.appendChild(printFrame);
-            var doc = printFrame.contentWindow.document;
-            doc.open();
-            doc.write(`
-            <html><head><title>Print Receipt</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-            <style>
-            body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; color: #000; background: #fff; }
-            .receipt-container { max-width: 450px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
-            .header { text-align: center; border-bottom: 2px dashed #000; padding-bottom: 15px; margin-bottom: 20px; }
-            .logo-text { font-size: 26px; font-weight: 800; color: #1B365D; letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 5px; }
-            .logo-text i { font-size: 22px; color: #E53E3E; }
-            .logo-accent { color: #E53E3E; border-bottom: 3px solid #1B365D; padding-bottom: 2px; }
-            .sub { font-size: 14px; margin: 5px 0; color: #4A5568; }
-            .code-box { border: 2px solid #E53E3E; text-align: center; padding: 15px; margin: 20px 0; border-radius: 5px; background: #FFF5F5 !important; color: #E53E3E; -webkit-print-color-adjust: exact; }
-            .code-box strong { font-size: 15px; display: block; line-height: 1.4; }
-            .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #eee; font-size: 15px; }
-            .label { font-weight: bold; }
-            .footer { text-align: center; margin-top: 30px; font-size: 13px; border-top: 2px dashed #000; padding-top: 15px; }
-            </style></head><body>
-            <div class="receipt-container">
-            <div class="header"><div class="logo-text"><i class="fas fa-compass"></i> MATH <span class="logo-accent">LAB</span></div><div class="sub">শিবগঞ্জ, বগুড়া | ০১৭৬৩-২০১২৯৯</div></div>
-            <div class="code-box"><strong>কোড জেনারেটের জন্য কোড জেনারেট বাটনে যান।</strong></div>
-            <div class="row"><span class="label">তারিখ ও সময়:</span><span>${data.date}</span></div>
-            <div class="row"><span class="label">শিক্ষार्थियों নাম:</span><span>${data.name}</span></div>
-            <div class="row"><span class="label">শ্রেণী / প্রোগ্রাম:</span><span>${data.className}</span></div>
-            <div class="row"><span class="label">রোল নম্বর:</span><span>${data.roll}</span></div>
-            <div class="row"><span class="label">আবেদনের উদ্দেশ্য:</span><span>${data.purpose}</span></div>
-            <div class="row"><span class="label">মাস ও বছর:</span><span>${data.monthYear}</span></div>
-            <div class="row"><span class="label">পেমেন্ট মাধ্যম:</span><span>${data.method}</span></div>
-            <div class="row"><span class="label">টাকার পরিমাণ:</span><strong>${data.amount} ৳</strong></div>
-            <div class="row"><span class="label">ট্রানজেকশন আইডি:</span><span>${data.txnid}</span></div>
-            <div class="footer"><p>*এই রিসিটটি যত্ন সহকারে সংরক্ষণ করুন।*</p><p style="margin-top: 5px;"><strong>ধন্যবাদ</strong></p></div>
-            </div></body></html>
-            `);
-            doc.close();
-            setTimeout(function() {
-            printFrame.contentWindow.focus(); printFrame.contentWindow.print();
-            setTimeout(function() { document.body.removeChild(printFrame); }, 1000);
-            }, 500);
-            }
-            
-            function handleFormSubmit(event) {
-            event.preventDefault();
-            var form = document.getElementById("mathLabForm");
-            var submitBtn = form.querySelector('.btn-submit');
-            var monthSelect = document.getElementById("monthSelect");
-            var yearSelect = document.getElementById("yearSelect");
-            var purposeSelect = document.getElementById("formPurpose");
-            var classSelect = document.getElementById("classSelect");
-            var methodSelect = document.getElementById("paymentMethod");
-            
-            var month = monthSelect.value;
-            var yearLastTwoDigits = yearSelect.value.slice(-2); 
-            var randomThreeDigits = Math.floor(100 + Math.random() * 900); 
-            document.getElementById("hiddenStudentCode").value = month + yearLastTwoDigits + randomThreeDigits;
-            
-            var receiptData = {
-            date: new Date().toLocaleString('bn-BD'),
-            name: document.getElementById("studentName").value,
-            className: classSelect.options[classSelect.selectedIndex].text,
-            roll: document.getElementById("rollNumber").value || "নেই",
-            purpose: purposeSelect.options[purposeSelect.selectedIndex].text,
-            monthYear: monthSelect.options[monthSelect.selectedIndex].text + " - " + yearSelect.options[yearSelect.selectedIndex].text,
-            method: methodSelect.options[methodSelect.selectedIndex].text,
-            amount: document.getElementById("amountInput").value,
-            txnid: document.getElementById("transactionInput").value
-            };
-            
-            var formData = new FormData(form);
-            submitBtn.innerText = "জমা হচ্ছে..."; submitBtn.disabled = true;
-            
-            fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' } })
-            .then(response => {
-            if (response.ok) {
-            document.getElementById("transactionInput").readOnly = false; 
-            generateAndPrintReceipt(receiptData);
-            setTimeout(function() { alert("আপনার তথ্য সফলভাবে জমা হয়েছে।"); form.reset(); checkPaymentMethod(); }, 1000);
-            } else { alert("দুঃখিত! তথ্য জমা দিতে সমস্যা হয়েছে। আবার চেষ্টা করুন।"); }
-            submitBtn.innerText = "তথ্য সাবমিট ও প্রিন্ট করুন"; submitBtn.disabled = false;
-            }).catch(error => {
-            alert("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে ইন্টারনেট কানেকশন চেক করুন।");
-            submitBtn.innerText = "তথ্য সাবমিট ও প্রিন্ট করুন"; submitBtn.disabled = false;
-            });
-            }
-            </script>
-            
-            </body>
-            </html>
+</body>
+</html>
