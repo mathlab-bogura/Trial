@@ -69,9 +69,9 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            min-height: 297mm;
-            margin-bottom: 20px; /* Space between pages in web view */
-            page-break-after: always; /* Force new page for each print */
+            /* হাইট সামান্য কমানো হয়েছে যেন পরের পেজে না যায় */
+            min-height: 290mm; 
+            margin-bottom: 20px; 
         }
 
         .white-box {
@@ -216,18 +216,28 @@
             .marks-table th, .marks-table td { padding: 4px; font-size: 11px; }
         }
 
-        /* ================= PRINT SETTINGS ================= */
+        /* ================= PRINT SETTINGS (এখান থেকেই মূলত ফিক্স করা হয়েছে) ================= */
+        @page {
+            size: A4;
+            margin: 0; /* ব্রাউজারের ডিফল্ট হেডার/ফুটার ও মার্জিন রিমুভ করা হয়েছে */
+        }
+        
         @media print {
-            body { background-color: white; padding: 0; }
-            .print-controls { display: none !important; } /* Hide controls when printing */
+            body { background-color: white; padding: 0; margin: 0; }
+            .print-controls { display: none !important; }
             
             .a4-page { 
                 box-shadow: none; 
                 border: none; 
-                width: 210mm !important; 
-                height: 297mm !important; 
+                width: 100% !important; 
+                height: 290mm !important; /* ফিক্সড হাইট, যাতে পরের পেজে না যায় */
+                min-height: 290mm !important; 
                 max-width: none; 
-                margin-bottom: 0;
+                margin: 0;
+                padding: 5mm; /* পেজের চারপাশে ৫ মি.মি. ফাঁকা জায়গা থাকবে যাতে প্রিন্টারে না কাটে */
+                page-break-after: always;
+                page-break-inside: avoid;
+                box-sizing: border-box;
             }
             .header-flex { flex-direction: row; text-align: left; align-items: flex-start; }
             .header-left { text-align: left; margin-bottom: 0; }
@@ -246,7 +256,7 @@
     <div class="print-controls">
         <h3>মাল্টিপল কপি জেনারেটর</h3>
         <label for="copyCount">কপি সংখ্যা:</label>
-        <input type="number" id="copyCount" value="500" min="1" max="1000">
+        <input type="number" id="copyCount" value="1" min="1" max="1000">
         <button onclick="generatePages()">পেজ তৈরি করুন</button>
         <button onclick="window.print()" style="background-color: #1976d2;">প্রিন্ট করুন (Ctrl+P)</button>
         <p style="font-size: 13px; color: #555; margin-top: 10px;">প্রথমে পেজ তৈরি করুন বাটনে ক্লিক করুন। এরপর প্রিন্ট কমান্ড দিন।</p>
@@ -405,7 +415,7 @@
                 container.appendChild(clone);
             }
             
-            alert(copyCount + " টি পেজ সফলভাবে তৈরি হয়েছে! এবার 'প্রিন্ট করুন' বাটনে ক্লিক করুন।");
+            // alert(copyCount + " টি পেজ সফলভাবে তৈরি হয়েছে! এবার 'প্রিন্ট করুন' বাটনে ক্লিক করুন।");
         }
 
         // Generate 1 page by default when the page loads
